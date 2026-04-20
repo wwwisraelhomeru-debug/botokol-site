@@ -1,210 +1,211 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botokol — AI Voice Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #0071e3;
-            --dark: #1d1d1f;
-            --light: #f5f5f7;
-            --glass: rgba(255, 255, 255, 0.7);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botokol AI</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SF Pro Display', -apple-system, sans-serif; }
-        
-        body { background: #fff; color: var(--dark); transition: all 0.3s ease; overflow-x: hidden; }
-        body.rtl { direction: rtl; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-        /* Абстрактный ИИ фон */
-        .bg-animate {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; overflow: hidden; background: #fff;
-        }
-        .blob {
-            position: absolute; width: 500px; height: 500px;
-            background: linear-gradient(135deg, rgba(0, 113, 227, 0.2) 0%, rgba(98, 207, 244, 0.2) 100%);
-            filter: blur(80px); border-radius: 50%;
-            animation: move 20s infinite alternate;
-        }
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
-        }
+<style>
+body {
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#fff;
+  color:#111;
+}
 
-        /* Header */
-        header {
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: var(--glass); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
-        .logo span { color: var(--primary); }
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+}
 
-        .lang-switcher button {
-            background: white; border: 1px solid #ddd; padding: 6px 12px;
-            border-radius: 8px; cursor: pointer; margin-left: 5px; font-weight: 600;
-            transition: 0.3s;
-        }
-        .lang-switcher button:hover { background: var(--primary); color: white; }
+.logo{
+  font-weight:800;
+}
 
-        /* Hero Section */
-        .hero {
-            padding: 180px 20px 100px; text-align: center;
-        }
-        .hero h1 { font-size: clamp(36px, 6vw, 72px); line-height: 1.05; margin-bottom: 25px; letter-spacing: -2px; }
-        .hero p { font-size: 22px; color: #424245; max-width: 750px; margin: 0 auto 40px; font-weight: 400; }
-        
-        .hero-img {
-            max-width: 900px; width: 100%; border-radius: 30px; margin-top: 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            transform: perspective(1000px) rotateX(5deg);
-        }
+.lang button{
+  margin-left:10px;
+  padding:6px 12px;
+  border:1px solid #ddd;
+  background:#fff;
+  cursor:pointer;
+  border-radius:6px;
+}
 
-        .btn {
-            background: var(--primary); color: white; padding: 18px 40px;
-            border-radius: 40px; text-decoration: none; font-weight: 600;
-            display: inline-block; transition: 0.4s; border: none; cursor: pointer; font-size: 18px;
-        }
-        .btn:hover { box-shadow: 0 10px 25px rgba(0,113,227,0.4); transform: translateY(-2px); }
+/* HERO */
+.hero{
+  text-align:center;
+  padding:80px 20px;
+  max-width:900px;
+  margin:auto;
+}
 
-        /* Features */
-        .features { padding: 100px 20px; position: relative; }
-        .grid {
-            max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.6); padding: 40px; border-radius: 28px;
-            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.3s;
-            text-align: center;
-        }
-        .card:hover { transform: translateY(-10px); background: white; }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
-        .card i { font-size: 32px; color: var(--primary); margin-bottom: 15px; display: block; }
-        
-        footer { padding: 60px 20px; text-align: center; color: #86868b; }
+.hero h1{
+  font-size:48px;
+  font-weight:800;
+}
 
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .hero-img { transform: none; }
-        }
-    </style>
+.hero p{
+  color:#666;
+  margin-top:15px;
+  font-size:18px;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:25px;
+  background:#FFD600;
+  border:none;
+  padding:16px 30px;
+  font-weight:600;
+  font-size:18px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* DEMO BOX */
+.demo{
+  margin-top:40px;
+  background:#f5f5f5;
+  padding:20px;
+  border-radius:14px;
+  text-align:left;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.demo audio{
+  width:100%;
+  margin-top:10px;
+}
+
+/* STEPS */
+.steps{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.step-box{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.card{
+  width:250px;
+  background:#fafafa;
+  padding:20px;
+  border-radius:12px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:80px 20px;
+  background:#fff8cc;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="bg-animate">
-        <div class="blob" style="top: -10%; left: -10%;"></div>
-        <div class="blob" style="bottom: -10%; right: -10%; background: linear-gradient(135deg, rgba(98, 207, 244, 0.2), rgba(0, 113, 227, 0.1));"></div>
-    </div>
+<div class="header">
+  <div class="logo">Botokol</div>
+  <div class="lang">
+    <button onclick="setLang('ru')">RU</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('he')">HE</button>
+  </div>
+</div>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo">BOTOKOL<span>.</span></div>
-            <div class="lang-switcher">
-                <button onclick="setLang('ru')">RU</button>
-                <button onclick="setLang('en')">EN</button>
-                <button onclick="setLang('he')">עב</button>
-            </div>
-        </div>
-    </header>
+<div class="hero">
+  <h1 id="title"></h1>
+  <p id="desc"></p>
+  <button class="btn" id="btn"></button>
 
-    <section class="hero">
-        <div class="container">
-            <h1 id="hero-title">Голосовые ИИ-роботы для вашего бизнеса</h1>
-            <p id="hero-desc">Автоматизируйте звонки, которые не отличить от разговора с человеком.</p>
-            <button class="btn" id="hero-btn">Начать работу</button>
-            <br>
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="AI Concept" class="hero-img">
-        </div>
-    </section>
+  <div class="demo">
+    📞 Call demo<br><br>
+    Client: Hello?<br>
+    Bot: Hi, I’m calling about your request...
 
-    <section class="features">
-        <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=500" alt="Smart AI">
-                <i class="fas fa-microchip"></i>
-                <h3 id="f1-t">Умный ИИ</h3>
-                <p id="f1-d">Распознает эмоции и контекст разговора в реальном времени.</p>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=500" alt="Tech">
-                <i class="fas fa-bolt"></i>
-                <h3 id="f2-t">Скорость</h3>
-                <p id="f2-d">Обрабатывает тысячи звонков одновременно без очередей.</p>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=500" alt="Security">
-                <i class="fas fa-shield-halved"></i>
-                <h3 id="f3-t">Надежность</h3>
-                <p id="f3-d">Безопасное хранение данных и полная интеграция с вашей CRM.</p>
-            </div>
-        </div>
-    </section>
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+    </audio>
+  </div>
+</div>
 
-    <footer>
-        <p>&copy; 2026 Botokol AI Solutions. <span id="footer-text">Все права защищены.</span></p>
-    </footer>
+<div class="steps">
+  <h2 id="how"></h2>
+  <div class="step-box">
+    <div class="card" id="s1"></div>
+    <div class="card" id="s2"></div>
+    <div class="card" id="s3"></div>
+  </div>
+</div>
 
-    <script>
-        const translations = {
-            ru: {
-                title: "Голосовые ИИ-роботы для вашего бизнеса",
-                desc: "Автоматизируйте звонки, которые не отличить от разговора с человеком.",
-                btn: "Начать работу",
-                f1t: "Умный ИИ", f1d: "Распознает эмоции и контекст разговора.",
-                f2t: "Скорость", f2d: "Тысячи звонков одновременно.",
-                f3t: "Надежность", f3d: "Интеграция с CRM и защита данных.",
-                footer: "Все права защищены.",
-                dir: "ltr"
-            },
-            en: {
-                title: "AI Voice Robots for Your Business",
-                desc: "Automate calls that are indistinguishable from talking to a human.",
-                btn: "Get Started",
-                f1t: "Smart AI", f1d: "Recognizes emotions and conversation context.",
-                f2t: "Speed", f2d: "Thousands of calls simultaneously.",
-                f3t: "Reliability", f3d: "CRM integration and data protection.",
-                footer: "All rights reserved.",
-                dir: "ltr"
-            },
-            he: {
-                title: "רובוטי קול בינה מלאכותית לעסק שלך",
-                desc: "אוטומציה של שיחות שלא ניתן להבדיל בינן לבין שיחה עם בן אנוש.",
-                btn: "התחל עכשיו",
-                f1t: "AI חכם", f1d: "מזהה רגשות והקשר שיחה בזמן אמת.",
-                f2t: "מהירות", f2d: "אלפי שיחות בו-זמנית ללא תורים.",
-                f3t: "אמינות", f3d: "אינטגרציה עם CRM ואבטחת נתונים.",
-                footer: "כל הזכויות שמורות.",
-                dir: "rtl"
-            }
-        };
+<div class="cta">
+  <h2 id="cta"></h2>
+  <button class="btn" id="ctaBtn"></button>
+</div>
 
-        function setLang(lang) {
-            const t = translations[lang];
-            document.getElementById('hero-title').innerText = t.title;
-            document.getElementById('hero-desc').innerText = t.desc;
-            document.getElementById('hero-btn').innerText = t.btn;
-            document.getElementById('f1-t').innerText = t.f1t;
-            document.getElementById('f1-d').innerText = t.f1d;
-            document.getElementById('f2-t').innerText = t.f2t;
-            document.getElementById('f2-d').innerText = t.f2d;
-            document.getElementById('f3-t').innerText = t.f3t;
-            document.getElementById('f3-d').innerText = t.f3d;
-            document.getElementById('footer-text').innerText = t.footer;
-            
-            document.body.className = t.dir === 'rtl' ? 'rtl' : '';
-            document.documentElement.lang = lang;
-            window.scrollTo(0, 0);
-        }
-    </script>
+<script>
+const t = {
+ru:{
+title:"Робот звонит клиентам и приводит встречи",
+desc:"Автоматически общается и записывает клиентов",
+btn:"Получить звонок",
+how:"Как это работает",
+s1:"📂 Загружаешь контакты",
+s2:"🤖 Робот звонит",
+s3:"📅 Получаешь встречи",
+cta:"Попробуй прямо сейчас",
+ctaBtn:"Начать"
+},
+en:{
+title:"AI calls your clients and books meetings",
+desc:"Automatically talks and schedules customers",
+btn:"Get a call",
+how:"How it works",
+s1:"📂 Upload contacts",
+s2:"🤖 AI calls them",
+s3:"📅 Get meetings",
+cta:"Try it now",
+ctaBtn:"Start"
+},
+he:{
+title:"הבוט מתקשר ללקוחות וקובע פגישות",
+desc:"מדבר עם לקוחות באופן אוטומטי",
+btn:"קבל שיחה",
+how:"איך זה עובד",
+s1:"📂 מעלה אנשי קשר",
+s2:"🤖 הבוט מתקשר",
+s3:"📅 מקבל פגישות",
+cta:"נסה עכשיו",
+ctaBtn:"התחל"
+}
+};
+
+function setLang(l){
+document.getElementById("title").innerText=t[l].title;
+document.getElementById("desc").innerText=t[l].desc;
+document.getElementById("btn").innerText=t[l].btn;
+document.getElementById("how").innerText=t[l].how;
+document.getElementById("s1").innerText=t[l].s1;
+document.getElementById("s2").innerText=t[l].s2;
+document.getElementById("s3").innerText=t[l].s3;
+document.getElementById("cta").innerText=t[l].cta;
+document.getElementById("ctaBtn").innerText=t[l].ctaBtn;
+
+document.body.dir = (l==="he")?"rtl":"ltr";
+}
+
+setLang("ru");
+</script>
+
 </body>
 </html>
