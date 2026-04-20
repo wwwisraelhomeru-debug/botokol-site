@@ -8,60 +8,89 @@
 <style>
 body {
   margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
-  background:#050507;
+  font-family:-apple-system, sans-serif;
   color:white;
+  overflow-x:hidden;
+  background:#050507;
 }
 
-.lang-switch {
+/* 🔥 ЖИВОЙ ФОН */
+.bg {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  background: radial-gradient(circle at 20% 20%, #7b5cff33, transparent),
+              radial-gradient(circle at 80% 30%, #00e0ff22, transparent),
+              radial-gradient(circle at 50% 80%, #ff00aa22, transparent);
+}
+
+/* язык */
+.lang {
   position:fixed;
   top:20px;
   right:20px;
-  z-index:10;
 }
 
-.lang-switch button {
+.lang button {
   margin-left:5px;
   padding:8px 12px;
-  border-radius:8px;
   border:none;
+  border-radius:8px;
   cursor:pointer;
 }
 
+/* hero */
 .hero {
-  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:60px;
   padding:120px 20px;
-  background: radial-gradient(circle at 50% 0%, rgba(123,92,255,0.25), transparent);
+  flex-wrap:wrap;
+}
+
+.hero-text {
+  max-width:500px;
 }
 
 h1 {
-  font-size:52px;
-  max-width:900px;
-  margin:auto;
-}
-
-.gradient {
-  background: linear-gradient(90deg,#7b5cff,#00e0ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  font-size:48px;
 }
 
 .sub {
-  margin-top:20px;
   color:#aaa;
-  font-size:20px;
+  margin-top:15px;
 }
 
 .btn {
   display:inline-block;
-  margin-top:30px;
+  margin-top:25px;
   padding:16px 30px;
   border-radius:14px;
   background: linear-gradient(90deg,#7b5cff,#00e0ff);
   color:white;
   text-decoration:none;
+  box-shadow:0 0 30px #7b5cff55;
 }
 
+/* 🔥 ФЕЙК UI (как будто продукт уже есть) */
+.ui-box {
+  background: rgba(255,255,255,0.05);
+  border-radius:20px;
+  padding:25px;
+  width:320px;
+  backdrop-filter: blur(15px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+.call {
+  margin-top:15px;
+  font-size:14px;
+  color:#ddd;
+}
+
+/* секции */
 .section {
   padding:80px 20px;
   text-align:center;
@@ -72,14 +101,20 @@ h1 {
   gap:20px;
   justify-content:center;
   flex-wrap:wrap;
-  margin-top:40px;
 }
 
 .card {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.04);
   padding:25px;
-  border-radius:18px;
+  border-radius:15px;
   width:260px;
+  backdrop-filter: blur(10px);
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-6px);
+  border:1px solid #7b5cff;
 }
 
 </style>
@@ -87,18 +122,37 @@ h1 {
 
 <body>
 
-<div class="lang-switch">
+<div class="bg"></div>
+
+<div class="lang">
   <button onclick="setLang('ru')">RU</button>
   <button onclick="setLang('en')">EN</button>
   <button onclick="setLang('he')">HE</button>
 </div>
 
+<!-- HERO -->
 <div class="hero">
-  <h1 id="title"></h1>
-  <div class="sub" id="subtitle"></div>
-  <a href="#" class="btn" id="cta"></a>
+
+  <div class="hero-text">
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
+  </div>
+
+  <!-- 🔥 ВИЗУАЛ ПРОДУКТА -->
+  <div class="ui-box">
+    📞 Звонок активен...
+
+    <div class="call">
+      Клиент: Алло?<br><br>
+      Botokol: Добрый день, звоню по поводу вашей заявки...<br><br>
+      Клиент: Да, удобно сейчас
+    </div>
+  </div>
+
 </div>
 
+<!-- HOW -->
 <div class="section">
   <h2 id="how"></h2>
 
@@ -109,57 +163,97 @@ h1 {
   </div>
 </div>
 
+<!-- VALUE -->
+<div class="section">
+  <h2 id="value"></h2>
+
+  <div class="cards">
+    <div class="card" id="v1"></div>
+    <div class="card" id="v2"></div>
+    <div class="card" id="v3"></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section">
+  <h2 id="cta2"></h2>
+  <a href="https://wa.me/972XXXXXXXXX" class="btn" id="ctaFinal"></a>
+</div>
+
 <script>
 const content = {
 
-  ru: {
-    dir: "ltr",
-    title: "Botokol закрывает клиентов через звонки",
-    subtitle: "AI звонит и назначает встречи за тебя",
-    cta: "Получить клиентов",
-    how: "Как это работает",
-    step1: "📂 Загружаешь контакты",
-    step2: "🤖 AI звонит клиентам",
-    step3: "📅 Получаешь встречи"
-  },
+ru:{
+dir:"ltr",
+title:"Botokol приводит клиентов через звонки",
+subtitle:"AI сам звонит, прогревает и назначает встречи",
+cta:"Получить клиента",
+how:"Как это работает",
+step1:"📂 Загружаешь базу",
+step2:"🤖 Botokol звонит",
+step3:"📅 Получаешь встречи",
+value:"Почему Botokol",
+v1:"⚡ Работает 24/7",
+v2:"📞 Голос как человек",
+v3:"💰 Дешевле сотрудников",
+cta2:"Попробуй сейчас",
+ctaFinal:"Запустить звонок"
+},
 
-  en: {
-    dir: "ltr",
-    title: "Botokol closes clients through AI calls",
-    subtitle: "AI calls, warms leads and books meetings",
-    cta: "Get Clients",
-    how: "How it works",
-    step1: "📂 Upload contacts",
-    step2: "🤖 AI calls leads",
-    step3: "📅 Get meetings"
-  },
+en:{
+dir:"ltr",
+title:"Botokol brings clients through AI calls",
+subtitle:"AI calls, warms leads and books meetings",
+cta:"Get Clients",
+how:"How it works",
+step1:"📂 Upload contacts",
+step2:"🤖 AI calls leads",
+step3:"📅 Get meetings",
+value:"Why Botokol",
+v1:"⚡ Works 24/7",
+v2:"📞 Human-like voice",
+v3:"💰 Saves money",
+cta2:"Try it now",
+ctaFinal:"Start Call"
+},
 
-  he: {
-    dir: "rtl",
-    title: "Botokol סוגר לקוחות עבורך בשיחות",
-    subtitle: "AI מתקשר וקובע פגישות במקומך",
-    cta: "קבל לקוחות",
-    how: "איך זה עובד",
-    step1: "📂 מעלה אנשי קשר",
-    step2: "🤖 AI מתקשר ללקוחות",
-    step3: "📅 מקבל פגישות"
-  }
+he:{
+dir:"rtl",
+title:"Botokol מביא לקוחות דרך שיחות",
+subtitle:"המערכת מתקשרת וקובעת פגישות עבורך",
+cta:"קבל לקוחות",
+how:"איך זה עובד",
+step1:"📂 מעלה רשימה",
+step2:"🤖 המערכת מתקשרת",
+step3:"📅 מקבל פגישות",
+value:"למה Botokol",
+v1:"⚡ עובד 24/7",
+v2:"📞 קול טבעי",
+v3:"💰 חוסך כסף",
+cta2:"נסה עכשיו",
+ctaFinal:"הפעל שיחה"
+}
 
 };
 
-function setLang(lang) {
-  document.body.dir = content[lang].dir;
+function setLang(lang){
+document.body.dir = content[lang].dir;
 
-  document.getElementById("title").innerText = content[lang].title;
-  document.getElementById("subtitle").innerText = content[lang].subtitle;
-  document.getElementById("cta").innerText = content[lang].cta;
-  document.getElementById("how").innerText = content[lang].how;
-  document.getElementById("step1").innerText = content[lang].step1;
-  document.getElementById("step2").innerText = content[lang].step2;
-  document.getElementById("step3").innerText = content[lang].step3;
+document.getElementById("title").innerText = content[lang].title;
+document.getElementById("subtitle").innerText = content[lang].subtitle;
+document.getElementById("cta").innerText = content[lang].cta;
+document.getElementById("how").innerText = content[lang].how;
+document.getElementById("step1").innerText = content[lang].step1;
+document.getElementById("step2").innerText = content[lang].step2;
+document.getElementById("step3").innerText = content[lang].step3;
+document.getElementById("value").innerText = content[lang].value;
+document.getElementById("v1").innerText = content[lang].v1;
+document.getElementById("v2").innerText = content[lang].v2;
+document.getElementById("v3").innerText = content[lang].v3;
+document.getElementById("cta2").innerText = content[lang].cta2;
+document.getElementById("ctaFinal").innerText = content[lang].ctaFinal;
 }
 
-// старт
 setLang("ru");
 </script>
 
