@@ -8,22 +8,10 @@
 <style>
 body {
   margin:0;
-  font-family:-apple-system, sans-serif;
-  background:#050507;
-  color:white;
+  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+  background:#ffffff;
+  color:#111;
   text-align:center;
-}
-
-/* фон */
-.bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index:-1;
-  background:
-    radial-gradient(circle at 20% 20%, #7b5cff33, transparent),
-    radial-gradient(circle at 80% 30%, #00e0ff22, transparent),
-    radial-gradient(circle at 50% 80%, #ff00aa22, transparent);
 }
 
 /* язык */
@@ -36,8 +24,9 @@ body {
 .lang button {
   margin-left:5px;
   padding:8px 12px;
-  border:none;
-  border-radius:8px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:6px;
   cursor:pointer;
 }
 
@@ -47,28 +36,30 @@ body {
 }
 
 h1 {
-  font-size:48px;
-  max-width:800px;
+  font-size:46px;
+  max-width:700px;
   margin:auto;
+  line-height:1.2;
 }
 
 .sub {
-  color:#aaa;
   margin-top:20px;
-  font-size:20px;
+  color:#555;
+  font-size:18px;
 }
 
 .btn {
   display:inline-block;
-  margin-top:25px;
-  padding:16px 30px;
-  border-radius:14px;
-  background: linear-gradient(90deg,#7b5cff,#00e0ff);
+  margin-top:30px;
+  padding:16px 28px;
+  border-radius:8px;
+  background:black;
   color:white;
   text-decoration:none;
+  font-size:16px;
 }
 
-/* карточки */
+/* блоки */
 .section {
   padding:80px 20px;
 }
@@ -78,13 +69,12 @@ h1 {
   gap:20px;
   justify-content:center;
   flex-wrap:wrap;
+  margin-top:40px;
 }
 
 .card {
-  background:#111;
-  padding:25px;
-  border-radius:15px;
-  width:260px;
+  width:220px;
+  padding:20px;
 }
 
 /* аудио */
@@ -95,8 +85,6 @@ h1 {
 </head>
 
 <body>
-
-<div class="bg"></div>
 
 <div class="lang">
   <button onclick="setLang('ru')">RU</button>
@@ -117,7 +105,6 @@ h1 {
     <div class="card" id="f1"></div>
     <div class="card" id="f2"></div>
     <div class="card" id="f3"></div>
-    <div class="card" id="f4"></div>
   </div>
 </div>
 
@@ -132,7 +119,7 @@ h1 {
   </div>
 </div>
 
-<!-- AUDIO DEMO -->
+<!-- AUDIO -->
 <div class="section">
   <h2 id="listenTitle"></h2>
 
@@ -153,61 +140,58 @@ const content = {
 
 ru:{
 dir:"ltr",
-title:"Botokol приводит клиентов через звонки — без менеджеров",
-subtitle:"AI звонит, прогревает и назначает встречи",
-cta:"Получить клиента",
-f1:"⚡ Работает 24/7",
-f2:"📞 Неотличим от человека",
-f3:"💰 В 3 раза дешевле",
-f4:"🚀 Массовые звонки",
+title:"Робот звонит клиентам и приводит тебе встречи",
+subtitle:"Botokol автоматически общается и записывает клиентов",
+cta:"Получить звонок",
+f1:"Работает 24/7",
+f2:"Голос как человек",
+f3:"Не нужен менеджер",
 how:"Как это работает",
-step1:"📂 Загружаешь базу",
-step2:"🤖 Botokol звонит",
-step3:"📅 Получаешь встречи",
-listenTitle:"Послушай как бот разговаривает",
+step1:"Загружаешь базу",
+step2:"Botokol звонит",
+step3:"Получаешь встречи",
+listenTitle:"Послушай разговор",
 play:"▶ Слушать",
 cta2:"Попробуй сейчас",
-ctaFinal:"Запустить звонок",
+ctaFinal:"Запустить",
 audio:"demo-ru.mp3"
 },
 
 en:{
 dir:"ltr",
-title:"Botokol brings clients through AI calls",
-subtitle:"AI calls and books meetings",
+title:"AI calls your clients and books meetings for you",
+subtitle:"Botokol talks, qualifies and converts leads",
 cta:"Get Clients",
-f1:"⚡ Works 24/7",
-f2:"📞 Human-like voice",
-f3:"💰 3x cheaper",
-f4:"🚀 Mass calling",
+f1:"Works 24/7",
+f2:"Human-like voice",
+f3:"No sales team needed",
 how:"How it works",
-step1:"📂 Upload contacts",
-step2:"🤖 AI calls",
-step3:"📅 Get meetings",
-listenTitle:"Listen to AI conversation",
-play:"▶ Play demo",
+step1:"Upload contacts",
+step2:"AI calls",
+step3:"Get meetings",
+listenTitle:"Listen to conversation",
+play:"▶ Play",
 cta2:"Try now",
-ctaFinal:"Start Call",
+ctaFinal:"Start",
 audio:"demo-en.mp3"
 },
 
 he:{
 dir:"rtl",
-title:"Botokol מביא לקוחות דרך שיחות",
-subtitle:"המערכת מתקשרת וקובעת פגישות",
+title:"המערכת מתקשרת ללקוחות ומביאה פגישות",
+subtitle:"Botokol מדבר עם הלקוחות וקובע פגישות",
 cta:"קבל לקוחות",
-f1:"⚡ עובד 24/7",
-f2:"📞 נשמע כמו אדם",
-f3:"💰 זול פי 3",
-f4:"🚀 שיחות בכמות גדולה",
+f1:"עובד 24/7",
+f2:"נשמע כמו אדם",
+f3:"בלי אנשי מכירות",
 how:"איך זה עובד",
-step1:"📂 מעלה רשימה",
-step2:"🤖 המערכת מתקשרת",
-step3:"📅 מקבל פגישות",
-listenTitle:"האזן לשיחה של הבוט",
+step1:"מעלה רשימה",
+step2:"המערכת מתקשרת",
+step3:"מקבל פגישות",
+listenTitle:"האזן לשיחה",
 play:"▶ הפעל",
 cta2:"נסה עכשיו",
-ctaFinal:"הפעל שיחה",
+ctaFinal:"התחל",
 audio:"demo-he.mp3"
 }
 
@@ -223,7 +207,6 @@ document.getElementById("cta").innerText = content[lang].cta;
 document.getElementById("f1").innerText = content[lang].f1;
 document.getElementById("f2").innerText = content[lang].f2;
 document.getElementById("f3").innerText = content[lang].f3;
-document.getElementById("f4").innerText = content[lang].f4;
 
 document.getElementById("how").innerText = content[lang].how;
 document.getElementById("step1").innerText = content[lang].step1;
