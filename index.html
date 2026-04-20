@@ -9,22 +9,60 @@
 body {
   margin:0;
   font-family: Arial, sans-serif;
-  background:#fff;
+  background:#ffffff;
   color:#111;
   text-align:center;
   overflow-x:hidden;
 }
 
-/* 🔥 живой AI фон */
+/* 🔥 АНИМИРОВАННЫЙ AI ФОН */
 .bg {
   position:fixed;
   width:100%;
   height:100%;
   z-index:-1;
-  background:
-    radial-gradient(circle at 20% 20%, #ffd40055, transparent),
-    radial-gradient(circle at 80% 40%, #00000008, transparent),
-    radial-gradient(circle at 50% 90%, #ffd40033, transparent);
+  overflow:hidden;
+}
+
+/* плавающие световые пятна */
+.bg::before, .bg::after {
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.6;
+  animation:move 12s infinite alternate ease-in-out;
+}
+
+.bg::before {
+  background:#ffd400;
+  top:10%;
+  left:10%;
+}
+
+.bg::after {
+  background:#00000015;
+  bottom:10%;
+  right:10%;
+  animation-duration:18s;
+}
+
+@keyframes move {
+  0% { transform:translate(0,0) scale(1); }
+  100% { transform:translate(80px, -60px) scale(1.2); }
+}
+
+/* сетка (намёк на AI) */
+.grid {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size:40px 40px;
 }
 
 /* язык */
@@ -71,7 +109,7 @@ h1 {
   border-radius:6px;
 }
 
-/* карточки */
+/* блоки */
 .section {
   padding:70px 20px;
 }
@@ -88,7 +126,7 @@ h1 {
   width:220px;
 }
 
-/* fake AI блок */
+/* fake UI */
 .ai-box {
   margin-top:40px;
   display:inline-block;
@@ -96,8 +134,8 @@ h1 {
   border:1px solid #eee;
   border-radius:10px;
   background:#fafafa;
-  max-width:300px;
   text-align:left;
+  max-width:320px;
 }
 
 /* аудио */
@@ -109,7 +147,9 @@ h1 {
 
 <body>
 
-<div class="bg"></div>
+<div class="bg">
+  <div class="grid"></div>
+</div>
 
 <div class="lang">
   <button onclick="setLang('ru')">RU</button>
@@ -123,7 +163,6 @@ h1 {
   <div class="sub" id="subtitle"></div>
   <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
 
-  <!-- 🔥 визуал продукта -->
   <div class="ai-box">
     📞 Call in progress...<br><br>
     Client: Hello?<br>
