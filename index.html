@@ -9,9 +9,22 @@
 body {
   margin:0;
   font-family: Arial, sans-serif;
-  background:#ffffff;
+  background:#fff;
   color:#111;
   text-align:center;
+  overflow-x:hidden;
+}
+
+/* 🔥 живой AI фон */
+.bg {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 20% 20%, #ffd40055, transparent),
+    radial-gradient(circle at 80% 40%, #00000008, transparent),
+    radial-gradient(circle at 50% 90%, #ffd40033, transparent);
 }
 
 /* язык */
@@ -31,7 +44,7 @@ body {
 
 /* hero */
 .hero {
-  padding:100px 20px;
+  padding:120px 20px;
 }
 
 h1 {
@@ -58,9 +71,9 @@ h1 {
   border-radius:6px;
 }
 
-/* блоки */
+/* карточки */
 .section {
-  padding:60px 20px;
+  padding:70px 20px;
 }
 
 .cards {
@@ -75,6 +88,18 @@ h1 {
   width:220px;
 }
 
+/* fake AI блок */
+.ai-box {
+  margin-top:40px;
+  display:inline-block;
+  padding:20px;
+  border:1px solid #eee;
+  border-radius:10px;
+  background:#fafafa;
+  max-width:300px;
+  text-align:left;
+}
+
 /* аудио */
 .audio-box {
   margin-top:30px;
@@ -83,6 +108,8 @@ h1 {
 </head>
 
 <body>
+
+<div class="bg"></div>
 
 <div class="lang">
   <button onclick="setLang('ru')">RU</button>
@@ -95,6 +122,13 @@ h1 {
   <h1 id="title"></h1>
   <div class="sub" id="subtitle"></div>
   <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
+
+  <!-- 🔥 визуал продукта -->
+  <div class="ai-box">
+    📞 Call in progress...<br><br>
+    Client: Hello?<br>
+    Bot: Hi, I’m calling about your request...
+  </div>
 </div>
 
 <!-- FEATURES -->
@@ -198,24 +232,11 @@ audio:"demo-he.mp3"
 function setLang(lang){
 document.body.dir = content[lang].dir;
 
-document.getElementById("title").innerText = content[lang].title;
-document.getElementById("subtitle").innerText = content[lang].subtitle;
-document.getElementById("cta").innerText = content[lang].cta;
-
-document.getElementById("f1").innerText = content[lang].f1;
-document.getElementById("f2").innerText = content[lang].f2;
-document.getElementById("f3").innerText = content[lang].f3;
-
-document.getElementById("how").innerText = content[lang].how;
-document.getElementById("step1").innerText = content[lang].step1;
-document.getElementById("step2").innerText = content[lang].step2;
-document.getElementById("step3").innerText = content[lang].step3;
-
-document.getElementById("listenTitle").innerText = content[lang].listenTitle;
-document.getElementById("playBtn").innerText = content[lang].play;
-
-document.getElementById("cta2").innerText = content[lang].cta2;
-document.getElementById("ctaFinal").innerText = content[lang].ctaFinal;
+for (let key in content[lang]) {
+  if (document.getElementById(key)) {
+    document.getElementById(key).innerText = content[lang][key];
+  }
+}
 
 document.getElementById("audio").src = content[lang].audio;
 }
