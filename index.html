@@ -10,19 +10,19 @@ body {
   margin:0;
   font-family:-apple-system, sans-serif;
   color:white;
-  overflow-x:hidden;
   background:#050507;
 }
 
-/* 🔥 ЖИВОЙ ФОН */
+/* фон */
 .bg {
   position:fixed;
   width:100%;
   height:100%;
   z-index:-1;
-  background: radial-gradient(circle at 20% 20%, #7b5cff33, transparent),
-              radial-gradient(circle at 80% 30%, #00e0ff22, transparent),
-              radial-gradient(circle at 50% 80%, #ff00aa22, transparent);
+  background:
+    radial-gradient(circle at 20% 20%, #7b5cff33, transparent),
+    radial-gradient(circle at 80% 30%, #00e0ff22, transparent),
+    radial-gradient(circle at 50% 80%, #ff00aa22, transparent);
 }
 
 /* язык */
@@ -37,7 +37,6 @@ body {
   padding:8px 12px;
   border:none;
   border-radius:8px;
-  cursor:pointer;
 }
 
 /* hero */
@@ -54,9 +53,7 @@ body {
   max-width:500px;
 }
 
-h1 {
-  font-size:48px;
-}
+h1 { font-size:48px; }
 
 .sub {
   color:#aaa;
@@ -71,26 +68,16 @@ h1 {
   background: linear-gradient(90deg,#7b5cff,#00e0ff);
   color:white;
   text-decoration:none;
-  box-shadow:0 0 30px #7b5cff55;
 }
 
-/* 🔥 ФЕЙК UI (как будто продукт уже есть) */
-.ui-box {
-  background: rgba(255,255,255,0.05);
+/* картинка */
+.hero img {
+  width:380px;
   border-radius:20px;
-  padding:25px;
-  width:320px;
-  backdrop-filter: blur(15px);
-  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
 }
 
-.call {
-  margin-top:15px;
-  font-size:14px;
-  color:#ddd;
-}
-
-/* секции */
+/* карточки */
 .section {
   padding:80px 20px;
   text-align:center;
@@ -104,19 +91,17 @@ h1 {
 }
 
 .card {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.05);
   padding:25px;
   border-radius:15px;
   width:260px;
-  backdrop-filter: blur(10px);
-  transition:0.3s;
 }
 
-.card:hover {
-  transform:translateY(-6px);
-  border:1px solid #7b5cff;
+.section img {
+  width:300px;
+  margin-top:30px;
+  border-radius:15px;
 }
-
 </style>
 </head>
 
@@ -139,17 +124,8 @@ h1 {
     <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
   </div>
 
-  <!-- 🔥 ВИЗУАЛ ПРОДУКТА -->
-  <div class="ui-box">
-    📞 Звонок активен...
-
-    <div class="call">
-      Клиент: Алло?<br><br>
-      Botokol: Добрый день, звоню по поводу вашей заявки...<br><br>
-      Клиент: Да, удобно сейчас
-    </div>
-  </div>
-
+  <!-- 🔥 AI картинка -->
+  <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995">
 </div>
 
 <!-- HOW -->
@@ -161,23 +137,23 @@ h1 {
     <div class="card" id="step2"></div>
     <div class="card" id="step3"></div>
   </div>
+
+  <!-- визуал процесса -->
+  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
 </div>
 
-<!-- VALUE -->
+<!-- VOICE -->
 <div class="section">
-  <h2 id="value"></h2>
-
-  <div class="cards">
-    <div class="card" id="v1"></div>
-    <div class="card" id="v2"></div>
-    <div class="card" id="v3"></div>
-  </div>
+  <h2>AI Voice Interaction</h2>
+  <img src="https://images.unsplash.com/photo-1581090700227-1e8a3d2c2d2d">
 </div>
 
 <!-- CTA -->
 <div class="section">
   <h2 id="cta2"></h2>
   <a href="https://wa.me/972XXXXXXXXX" class="btn" id="ctaFinal"></a>
+
+  <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
 </div>
 
 <script>
@@ -186,16 +162,12 @@ const content = {
 ru:{
 dir:"ltr",
 title:"Botokol приводит клиентов через звонки",
-subtitle:"AI сам звонит, прогревает и назначает встречи",
+subtitle:"AI звонит и назначает встречи",
 cta:"Получить клиента",
 how:"Как это работает",
 step1:"📂 Загружаешь базу",
 step2:"🤖 Botokol звонит",
 step3:"📅 Получаешь встречи",
-value:"Почему Botokol",
-v1:"⚡ Работает 24/7",
-v2:"📞 Голос как человек",
-v3:"💰 Дешевле сотрудников",
 cta2:"Попробуй сейчас",
 ctaFinal:"Запустить звонок"
 },
@@ -203,33 +175,25 @@ ctaFinal:"Запустить звонок"
 en:{
 dir:"ltr",
 title:"Botokol brings clients through AI calls",
-subtitle:"AI calls, warms leads and books meetings",
+subtitle:"AI calls and books meetings",
 cta:"Get Clients",
 how:"How it works",
 step1:"📂 Upload contacts",
-step2:"🤖 AI calls leads",
+step2:"🤖 AI calls",
 step3:"📅 Get meetings",
-value:"Why Botokol",
-v1:"⚡ Works 24/7",
-v2:"📞 Human-like voice",
-v3:"💰 Saves money",
-cta2:"Try it now",
+cta2:"Try now",
 ctaFinal:"Start Call"
 },
 
 he:{
 dir:"rtl",
 title:"Botokol מביא לקוחות דרך שיחות",
-subtitle:"המערכת מתקשרת וקובעת פגישות עבורך",
+subtitle:"המערכת מתקשרת וקובעת פגישות",
 cta:"קבל לקוחות",
 how:"איך זה עובד",
 step1:"📂 מעלה רשימה",
 step2:"🤖 המערכת מתקשרת",
 step3:"📅 מקבל פגישות",
-value:"למה Botokol",
-v1:"⚡ עובד 24/7",
-v2:"📞 קול טבעי",
-v3:"💰 חוסך כסף",
 cta2:"נסה עכשיו",
 ctaFinal:"הפעל שיחה"
 }
@@ -246,10 +210,6 @@ document.getElementById("how").innerText = content[lang].how;
 document.getElementById("step1").innerText = content[lang].step1;
 document.getElementById("step2").innerText = content[lang].step2;
 document.getElementById("step3").innerText = content[lang].step3;
-document.getElementById("value").innerText = content[lang].value;
-document.getElementById("v1").innerText = content[lang].v1;
-document.getElementById("v2").innerText = content[lang].v2;
-document.getElementById("v3").innerText = content[lang].v3;
 document.getElementById("cta2").innerText = content[lang].cta2;
 document.getElementById("ctaFinal").innerText = content[lang].ctaFinal;
 }
