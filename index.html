@@ -3,285 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Botokol</title>
+<title>Botokol AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#ffffff;
-  color:#111;
-  text-align:center;
-  overflow-x:hidden;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #111;
+  overflow-x: hidden;
 }
 
-/* 🔥 АНИМИРОВАННЫЙ AI ФОН */
+/* 🔥 ФОН AI */
 .bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index:-1;
-  overflow:hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,200,0,0.25), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(255,150,0,0.2), transparent 40%),
+    linear-gradient(120deg, #ffffff 0%, #fff7cc 100%);
 }
 
-/* плавающие световые пятна */
-.bg::before, .bg::after {
-  content:"";
-  position:absolute;
-  width:600px;
-  height:600px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:0.6;
-  animation:move 12s infinite alternate ease-in-out;
-}
-
-.bg::before {
-  background:#ffd400;
-  top:10%;
-  left:10%;
-}
-
+/* сетка */
 .bg::after {
-  background:#00000015;
-  bottom:10%;
-  right:10%;
-  animation-duration:18s;
-}
-
-@keyframes move {
-  0% { transform:translate(0,0) scale(1); }
-  100% { transform:translate(80px, -60px) scale(1.2); }
-}
-
-/* сетка (намёк на AI) */
-.grid {
-  position:absolute;
-  width:100%;
-  height:100%;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size:40px 40px;
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* язык */
-.lang {
-  position:fixed;
-  top:20px;
-  right:20px;
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
 }
 
 .lang button {
-  margin-left:5px;
-  padding:6px 10px;
-  border:1px solid #ccc;
-  background:white;
-  cursor:pointer;
+  margin-left: 10px;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
-/* hero */
+/* HERO */
 .hero {
-  padding:120px 20px;
+  text-align: center;
+  padding: 80px 20px;
 }
 
-h1 {
-  font-size:44px;
-  max-width:700px;
-  margin:auto;
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  max-width: 800px;
+  margin: auto;
 }
 
-.sub {
-  margin-top:20px;
-  color:#555;
-  font-size:18px;
+.hero p {
+  margin-top: 20px;
+  color: #666;
+  font-size: 18px;
 }
 
-/* кнопка */
+/* КНОПКА */
 .btn {
-  display:inline-block;
-  margin-top:30px;
-  padding:16px 30px;
-  background:#ffd400;
-  color:black;
-  text-decoration:none;
-  font-weight:bold;
-  border-radius:6px;
+  margin-top: 30px;
+  background: #FFD600;
+  border: none;
+  padding: 16px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(255, 214, 0, 0.4);
+  transition: 0.3s;
 }
 
-/* блоки */
-.section {
-  padding:70px 20px;
+.btn:hover {
+  transform: translateY(-2px);
 }
 
-.cards {
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  flex-wrap:wrap;
-  margin-top:40px;
+/* БЛОК ЗВОНКА */
+.call-box {
+  margin: 50px auto;
+  max-width: 500px;
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: left;
+  font-size: 16px;
 }
 
-.card {
-  width:220px;
+/* КАРТИНКИ */
+.ai-img {
+  margin-top: 40px;
 }
 
-/* fake UI */
-.ai-box {
-  margin-top:40px;
-  display:inline-block;
-  padding:20px;
-  border:1px solid #eee;
-  border-radius:10px;
-  background:#fafafa;
-  text-align:left;
-  max-width:320px;
-}
-
-/* аудио */
-.audio-box {
-  margin-top:30px;
+.ai-img img {
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg">
-  <div class="grid"></div>
+<div class="bg"></div>
+
+<div class="header">
+  <div class="lang">
+    <button onclick="setLang('ru')">RU</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('he')">HE</button>
+  </div>
 </div>
 
-<div class="lang">
-  <button onclick="setLang('ru')">RU</button>
-  <button onclick="setLang('en')">EN</button>
-  <button onclick="setLang('he')">HE</button>
-</div>
-
-<!-- HERO -->
 <div class="hero">
   <h1 id="title"></h1>
-  <div class="sub" id="subtitle"></div>
-  <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
+  <p id="desc"></p>
 
-  <div class="ai-box">
+  <button class="btn" id="btn"></button>
+
+  <div class="call-box">
     📞 Call in progress...<br><br>
     Client: Hello?<br>
     Bot: Hi, I’m calling about your request...
   </div>
-</div>
 
-<!-- FEATURES -->
-<div class="section">
-  <div class="cards">
-    <div class="card" id="f1"></div>
-    <div class="card" id="f2"></div>
-    <div class="card" id="f3"></div>
+  <!-- 🔥 КАРТИНКА -->
+  <div class="ai-img">
+    <img src="https://images.unsplash.com/photo-1677442135136-760c813028c0" alt="AI">
   </div>
-</div>
-
-<!-- HOW -->
-<div class="section">
-  <h2 id="how"></h2>
-
-  <div class="cards">
-    <div class="card" id="step1"></div>
-    <div class="card" id="step2"></div>
-    <div class="card" id="step3"></div>
-  </div>
-</div>
-
-<!-- AUDIO -->
-<div class="section">
-  <h2 id="listenTitle"></h2>
-
-  <div class="audio-box">
-    <button onclick="playAudio()" class="btn" id="playBtn"></button>
-    <audio id="audio" src="demo-ru.mp3"></audio>
-  </div>
-</div>
-
-<!-- CTA -->
-<div class="section">
-  <h2 id="cta2"></h2>
-  <a href="https://wa.me/972XXXXXXXXX" class="btn" id="ctaFinal"></a>
 </div>
 
 <script>
-const content = {
-
-ru:{
-dir:"ltr",
-title:"Робот звонит клиентам и приводит тебе встречи",
-subtitle:"Botokol автоматически общается и записывает клиентов",
-cta:"Получить звонок",
-f1:"Работает 24/7",
-f2:"Голос как человек",
-f3:"Не нужен менеджер",
-how:"Как это работает",
-step1:"Загружаешь базу",
-step2:"Botokol звонит",
-step3:"Получаешь встречи",
-listenTitle:"Послушай разговор",
-play:"▶ Слушать",
-cta2:"Попробуй сейчас",
-ctaFinal:"Запустить",
-audio:"demo-ru.mp3"
-},
-
-en:{
-dir:"ltr",
-title:"AI calls your clients and books meetings for you",
-subtitle:"Botokol talks and converts leads automatically",
-cta:"Get Clients",
-f1:"Works 24/7",
-f2:"Human-like voice",
-f3:"No sales team needed",
-how:"How it works",
-step1:"Upload contacts",
-step2:"AI calls",
-step3:"Get meetings",
-listenTitle:"Listen to conversation",
-play:"▶ Play",
-cta2:"Try now",
-ctaFinal:"Start",
-audio:"demo-en.mp3"
-},
-
-he:{
-dir:"rtl",
-title:"המערכת מתקשרת ללקוחות ומביאה פגישות",
-subtitle:"Botokol מדבר עם הלקוחות וקובע פגישות",
-cta:"קבל לקוחות",
-f1:"עובד 24/7",
-f2:"נשמע כמו אדם",
-f3:"בלי אנשי מכירות",
-how:"איך זה עובד",
-step1:"מעלה רשימה",
-step2:"המערכת מתקשרת",
-step3:"מקבל פגישות",
-listenTitle:"האזן לשיחה",
-play:"▶ הפעל",
-cta2:"נסה עכשיו",
-ctaFinal:"התחל",
-audio:"demo-he.mp3"
-}
-
+const translations = {
+  ru: {
+    title: "Робот звонит клиентам и приводит тебе встречи",
+    desc: "Botokol автоматически общается и записывает клиентов",
+    btn: "Получить звонок"
+  },
+  en: {
+    title: "AI calls your clients and books meetings for you",
+    desc: "Botokol automatically talks and schedules customers",
+    btn: "Get a call"
+  },
+  he: {
+    title: "הבוט מתקשר ללקוחות וקובע פגישות עבורך",
+    desc: "Botokol מדבר עם לקוחות באופן אוטומטי",
+    btn: "קבל שיחה"
+  }
 };
 
-function setLang(lang){
-document.body.dir = content[lang].dir;
+function setLang(lang) {
+  document.getElementById("title").innerText = translations[lang].title;
+  document.getElementById("desc").innerText = translations[lang].desc;
+  document.getElementById("btn").innerText = translations[lang].btn;
 
-for (let key in content[lang]) {
-  if (document.getElementById(key)) {
-    document.getElementById(key).innerText = content[lang][key];
+  if(lang === "he") {
+    document.body.dir = "rtl";
+  } else {
+    document.body.dir = "ltr";
   }
-}
-
-document.getElementById("audio").src = content[lang].audio;
-}
-
-function playAudio(){
-document.getElementById("audio").play();
 }
 
 setLang("ru");
