@@ -9,8 +9,9 @@
 body {
   margin:0;
   font-family:-apple-system, sans-serif;
-  color:white;
   background:#050507;
+  color:white;
+  text-align:center;
 }
 
 /* фон */
@@ -37,27 +38,24 @@ body {
   padding:8px 12px;
   border:none;
   border-radius:8px;
+  cursor:pointer;
 }
 
 /* hero */
 .hero {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:60px;
   padding:120px 20px;
-  flex-wrap:wrap;
 }
 
-.hero-text {
-  max-width:500px;
+h1 {
+  font-size:48px;
+  max-width:800px;
+  margin:auto;
 }
-
-h1 { font-size:48px; }
 
 .sub {
   color:#aaa;
-  margin-top:15px;
+  margin-top:20px;
+  font-size:20px;
 }
 
 .btn {
@@ -70,17 +68,9 @@ h1 { font-size:48px; }
   text-decoration:none;
 }
 
-/* картинка */
-.hero img {
-  width:380px;
-  border-radius:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
-}
-
 /* карточки */
 .section {
   padding:80px 20px;
-  text-align:center;
 }
 
 .cards {
@@ -91,16 +81,15 @@ h1 { font-size:48px; }
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
+  background:#111;
   padding:25px;
   border-radius:15px;
   width:260px;
 }
 
-.section img {
-  width:300px;
+/* аудио */
+.audio-box {
   margin-top:30px;
-  border-radius:15px;
 }
 </style>
 </head>
@@ -117,15 +106,19 @@ h1 { font-size:48px; }
 
 <!-- HERO -->
 <div class="hero">
+  <h1 id="title"></h1>
+  <div class="sub" id="subtitle"></div>
+  <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
+</div>
 
-  <div class="hero-text">
-    <h1 id="title"></h1>
-    <div class="sub" id="subtitle"></div>
-    <a href="https://wa.me/972XXXXXXXXX" class="btn" id="cta"></a>
+<!-- FEATURES -->
+<div class="section">
+  <div class="cards">
+    <div class="card" id="f1"></div>
+    <div class="card" id="f2"></div>
+    <div class="card" id="f3"></div>
+    <div class="card" id="f4"></div>
   </div>
-
-  <!-- 🔥 AI картинка -->
-  <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995">
 </div>
 
 <!-- HOW -->
@@ -137,23 +130,22 @@ h1 { font-size:48px; }
     <div class="card" id="step2"></div>
     <div class="card" id="step3"></div>
   </div>
-
-  <!-- визуал процесса -->
-  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
 </div>
 
-<!-- VOICE -->
+<!-- AUDIO DEMO -->
 <div class="section">
-  <h2>AI Voice Interaction</h2>
-  <img src="https://images.unsplash.com/photo-1581090700227-1e8a3d2c2d2d">
+  <h2 id="listenTitle"></h2>
+
+  <div class="audio-box">
+    <button onclick="playAudio()" class="btn" id="playBtn"></button>
+    <audio id="audio" src="demo-ru.mp3"></audio>
+  </div>
 </div>
 
 <!-- CTA -->
 <div class="section">
   <h2 id="cta2"></h2>
   <a href="https://wa.me/972XXXXXXXXX" class="btn" id="ctaFinal"></a>
-
-  <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
 </div>
 
 <script>
@@ -161,15 +153,22 @@ const content = {
 
 ru:{
 dir:"ltr",
-title:"Botokol приводит клиентов через звонки",
-subtitle:"AI звонит и назначает встречи",
+title:"Botokol приводит клиентов через звонки — без менеджеров",
+subtitle:"AI звонит, прогревает и назначает встречи",
 cta:"Получить клиента",
+f1:"⚡ Работает 24/7",
+f2:"📞 Неотличим от человека",
+f3:"💰 В 3 раза дешевле",
+f4:"🚀 Массовые звонки",
 how:"Как это работает",
 step1:"📂 Загружаешь базу",
 step2:"🤖 Botokol звонит",
 step3:"📅 Получаешь встречи",
+listenTitle:"Послушай как бот разговаривает",
+play:"▶ Слушать",
 cta2:"Попробуй сейчас",
-ctaFinal:"Запустить звонок"
+ctaFinal:"Запустить звонок",
+audio:"demo-ru.mp3"
 },
 
 en:{
@@ -177,12 +176,19 @@ dir:"ltr",
 title:"Botokol brings clients through AI calls",
 subtitle:"AI calls and books meetings",
 cta:"Get Clients",
+f1:"⚡ Works 24/7",
+f2:"📞 Human-like voice",
+f3:"💰 3x cheaper",
+f4:"🚀 Mass calling",
 how:"How it works",
 step1:"📂 Upload contacts",
 step2:"🤖 AI calls",
 step3:"📅 Get meetings",
+listenTitle:"Listen to AI conversation",
+play:"▶ Play demo",
 cta2:"Try now",
-ctaFinal:"Start Call"
+ctaFinal:"Start Call",
+audio:"demo-en.mp3"
 },
 
 he:{
@@ -190,12 +196,19 @@ dir:"rtl",
 title:"Botokol מביא לקוחות דרך שיחות",
 subtitle:"המערכת מתקשרת וקובעת פגישות",
 cta:"קבל לקוחות",
+f1:"⚡ עובד 24/7",
+f2:"📞 נשמע כמו אדם",
+f3:"💰 זול פי 3",
+f4:"🚀 שיחות בכמות גדולה",
 how:"איך זה עובד",
 step1:"📂 מעלה רשימה",
 step2:"🤖 המערכת מתקשרת",
 step3:"📅 מקבל פגישות",
+listenTitle:"האזן לשיחה של הבוט",
+play:"▶ הפעל",
 cta2:"נסה עכשיו",
-ctaFinal:"הפעל שיחה"
+ctaFinal:"הפעל שיחה",
+audio:"demo-he.mp3"
 }
 
 };
@@ -206,12 +219,28 @@ document.body.dir = content[lang].dir;
 document.getElementById("title").innerText = content[lang].title;
 document.getElementById("subtitle").innerText = content[lang].subtitle;
 document.getElementById("cta").innerText = content[lang].cta;
+
+document.getElementById("f1").innerText = content[lang].f1;
+document.getElementById("f2").innerText = content[lang].f2;
+document.getElementById("f3").innerText = content[lang].f3;
+document.getElementById("f4").innerText = content[lang].f4;
+
 document.getElementById("how").innerText = content[lang].how;
 document.getElementById("step1").innerText = content[lang].step1;
 document.getElementById("step2").innerText = content[lang].step2;
 document.getElementById("step3").innerText = content[lang].step3;
+
+document.getElementById("listenTitle").innerText = content[lang].listenTitle;
+document.getElementById("playBtn").innerText = content[lang].play;
+
 document.getElementById("cta2").innerText = content[lang].cta2;
 document.getElementById("ctaFinal").innerText = content[lang].ctaFinal;
+
+document.getElementById("audio").src = content[lang].audio;
+}
+
+function playAudio(){
+document.getElementById("audio").play();
 }
 
 setLang("ru");
